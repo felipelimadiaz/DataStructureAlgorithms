@@ -24,27 +24,12 @@ namespace DataStructureAlgorithms
 
         public int[] leftRotate()
         {
-            int[] arrRotated = this.arr;
-            int gcd = Gcd(this.rotationQuantity, this.arr.Length);
-            for (int i = 0; i < gcd; i++)
-            {
-                /* move i-th values of blocks */
-                int temp = arr[i];
-                int j = i;
-                while (true)
-                {
-                    int k = j + this.rotationQuantity;
-                    if (k >= arr.Length)
-                        k = k - arr.Length;
-                    if (k == i)
-                        break;
-                    arr[j] = arr[k];
-                    j = k;
-                }
-                arr[j] = temp;
-            }
+            int n = this.arr.Length;
+            ReverseArray(0, this.rotationQuantity - 1);
+            ReverseArray(this.rotationQuantity, n - 1);
+            ReverseArray(0, n - 1);
 
-            return arrRotated;
+            return this.arr;
         }
 
         public int[] RightRotateGCD()
@@ -70,6 +55,20 @@ namespace DataStructureAlgorithms
             }
 
             return arrRotated;
+        }
+
+        public void ReverseArray(int start, int end)
+        {
+            int temporary;
+            while (start < end)
+            {
+                temporary = this.arr[start];
+                this.arr[start] = this.arr[end];
+                this.arr[end] = temporary;
+                start++;
+                end--;
+            }
+
         }
 
         public int[] RemoveAt(int index)
