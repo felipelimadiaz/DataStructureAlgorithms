@@ -6,7 +6,7 @@ namespace DataStructureAlgorithms
     {
         static void Main(string[] args)
         {
-            ArrayExercises.Exercise3Array();
+            ArrayExercises.Exercise5SearchInaRotatedArray();
         }
 
     }

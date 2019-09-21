@@ -19,13 +19,13 @@ namespace DataStructureAlgorithms
                 int[] arrTested = arr;
                 for (int j = 0; j < arr.Length - 1; j++)
                 {
-                    ArrayRotation newRotation = new ArrayRotation(arrTested, d);
-                    arrTested = newRotation.RightRotateGCD();
+                    ArrayProperties arrayProperties = new ArrayProperties(arrTested, d);
+                    arrTested = arrayProperties.RightRotateGCD();
                     int index = arrTested.Length - j - 1;
                     if (arrTested.Length - j - 1 < 0)
                         index = 0;
 
-                    arrTested = newRotation.RemoveAt(index);
+                    arrTested = arrayProperties.RemoveAt(index);
                 }
 
                 Console.WriteLine(arrTested[0].ToString());
@@ -45,8 +45,8 @@ namespace DataStructureAlgorithms
 
                 int d = int.Parse(Console.In.ReadLine());
                 int[] arrTested = arr;
-                ArrayRotation newRotation = new ArrayRotation(arr, d);
-                arrTested = newRotation.leftRotate();
+                ArrayProperties arrayProperties = new ArrayProperties(arr, d);
+                arrTested = arrayProperties.leftRotateWithReverse();
 
 
                 Console.WriteLine("{0}", string.Join(" ", arrTested));
@@ -66,12 +66,62 @@ namespace DataStructureAlgorithms
                     arr[z] = int.Parse(inputLine[z]);
 
                 int[] arrTested = arr;
-                ArrayRotation newRotation = new ArrayRotation(arr, d);
-                arrTested = newRotation.leftRotate();
+                ArrayProperties arrayProperties = new ArrayProperties(arr, d);
+                arrTested = arrayProperties.leftRotateWithReverse();
 
 
                 Console.WriteLine("{0}", string.Join(" ", arrTested));
             }
         }
+
+        public static void Exercise4ArrayLeader()
+        {
+            int testCase = int.Parse(Console.In.ReadLine());
+            for (int i = 0; i < testCase; i++)
+            {
+                int inputSizeArray = int.Parse(Console.In.ReadLine());
+                int[] arr = new int[inputSizeArray];
+                string[] inputArray = Console.In.ReadLine().Trim().Split(" ");
+                for (int j = 0; j < inputSizeArray; j++)
+                    arr[j] = int.Parse(inputArray[j]);
+
+                int[] arrTested = arr;
+                ArrayProperties arrayProperties = new ArrayProperties(arr, 1);
+                arrTested = arrayProperties.FindLeaders();
+
+                int[] reversedArray = new int[arrTested.Length];
+                int count = 0;
+                for (int j = arrTested.Length - 1; j >= 0; j--)
+                {
+                    reversedArray[count] = arrTested[j];
+                    count++;
+                }
+
+                Console.WriteLine("{0}", string.Join(" ", reversedArray));
+            }
+            
+        }
+
+
+        public static void Exercise5SearchInaRotatedArray()
+        {
+            int testCase = int.Parse(Console.In.ReadLine());
+            for (int i = 0; i < testCase; i++)
+            {
+                int inputSizeArray = int.Parse(Console.In.ReadLine());
+                int[] arr = new int[inputSizeArray];
+                string[] inputArray = Console.In.ReadLine().Trim().Split(' ');
+                for (int j = 0; j < inputSizeArray; j++)
+                    arr[j] = int.Parse(inputArray[j]);
+
+                int elementToBeSearched = int.Parse(Console.In.ReadLine());
+                ArrayProperties arrProperties = new ArrayProperties(arr, 0);
+
+                int discoveredElement = arrProperties.SearchElementInPivotedSortedArray(0, arr.Length - 1, elementToBeSearched);
+
+                Console.WriteLine("{0}", discoveredElement);
+            }
+        }
+
     }
 }
