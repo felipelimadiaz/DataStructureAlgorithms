@@ -159,22 +159,22 @@ namespace DataStructureAlgorithms
             {
                 if (this.arr[low] <= key && this.arr[mid] >= key)
                 {
-                    return SearchElement(low, mid - 1, key);
+                    return SearchElementInPivotedSortedArray(low, mid - 1, key);
                 }
                 else
                 {
-                    return SearchElement(mid + 1, high, key);
+                    return SearchElementInPivotedSortedArray(mid + 1, high, key);
                 }
             }
             else
             {
                 if (this.arr[mid] <= key && this.arr[high] >= key)
                 {
-                    return SearchElement(mid + 1, high, key);
+                    return SearchElementInPivotedSortedArray(mid + 1, high, key);
                 }
                 else
                 {
-                    return SearchElement(low, mid - 1, key);
+                    return SearchElementInPivotedSortedArray(low, mid - 1, key);
                 }
             }
         }
